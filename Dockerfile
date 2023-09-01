@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copia el código de la aplicación al contenedor
-COPY ./app ./app
+COPY . ./app
 
 # Expone el puerto en el que la aplicación Express escucha
 EXPOSE 3000
