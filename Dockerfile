@@ -1,17 +1,19 @@
-# Usa una imagen base de Node.js
-FROM node:14
+FROM node:18
 
-# Copia el package.json y el package-lock.json para instalar dependencias
+# Create app directory
+WORKDIR /usr/src/app
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
 COPY package*.json ./
 
-# Instala las dependencias
 RUN npm install
+# If you are building your code for production
+# RUN npm ci --omit=dev
 
-# Copia el código de la aplicación al contenedor
+# Bundle app source
 COPY . .
 
-# Expone el puerto en el que la aplicación Express escucha
-EXPOSE 3000
-
-# Comando para ejecutar la aplicación
-CMD ["node", "index.js"]
+EXPOSE 8080
+CMD [ "node", "index.js" ]
