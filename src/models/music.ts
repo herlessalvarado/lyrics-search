@@ -29,6 +29,7 @@ export class Music {
           _id: 0,
           artist: 1,
           song: 1,
+          lyrics: "$text",
         }
       },
       {
@@ -37,6 +38,7 @@ export class Music {
           songs: {
             $push: {
               song: "$song",
+              lyrics: "$lyrics"
             }
           }
         }
@@ -45,7 +47,8 @@ export class Music {
         $project: {
           _id: 0,
           artist: "$_id",
-          songs: 1
+          songs: 1,
+          lyrics: 1
         }
       }
     ])

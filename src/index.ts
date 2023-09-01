@@ -19,8 +19,6 @@ app.post('/get-by-artist', async (req: Request, res: Response) => {
   const artist = req.body.artist;
   const [track] = await MusicModel.findByArtist(artist);
 
-  console.log(track)
-
   if (!track) {
     return res.status(404).send('Artist not found');
   }
